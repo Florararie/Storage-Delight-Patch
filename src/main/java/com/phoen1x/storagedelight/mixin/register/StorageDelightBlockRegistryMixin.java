@@ -28,13 +28,19 @@ public class StorageDelightBlockRegistryMixin {
         PolymerItem.registerOverlay(cir.getReturnValue(), polymerItem);
     }
 
-    @Inject(method = "registerBlock", at = @At("HEAD"))
-    private static void modifyBlockSettings(String path, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings, CallbackInfoReturnable<Block> cir) {
+    @Inject(
+            method = "registerBlock(Ljava/lang/String;Ljava/util/function/Function;Lnet/minecraft/block/AbstractBlock$Settings;I)Lnet/minecraft/block/Block;",
+            at = @At("HEAD")
+    )
+    private static void modifyBlockSettings(String path, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings, int fuelBurnTime, CallbackInfoReturnable<Block> cir) {
         settings.nonOpaque();
     }
 
-    @Inject(method = "registerBlock", at = @At("TAIL"))
-    private static void polymerify(String path, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings, CallbackInfoReturnable<Block> cir) {
+    @Inject(
+            method = "registerBlock(Ljava/lang/String;Ljava/util/function/Function;Lnet/minecraft/block/AbstractBlock$Settings;I)Lnet/minecraft/block/Block;",
+            at = @At("TAIL")
+    )
+    private static void polymerify(String path, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings, int fuelBurnTime, CallbackInfoReturnable<Block> cir) {
         Block block = cir.getReturnValue();
 
         Identifier blockId = Identifier.of(StorageDelight.MOD_ID, path);
