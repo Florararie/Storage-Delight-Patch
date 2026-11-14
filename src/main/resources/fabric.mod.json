@@ -19,9 +19,9 @@
 		"storagedelight-patch.mixins.json"
 	],
 	"depends": {
-        "fabricloader": ">=0.17.0",
-        "minecraft": ">=26.1",
-        "java": ">=21",
+        "fabricloader": ">=0.18.4",
+        "minecraft": ">=26.1 <26.2",
+        "java": ">=25",
         "fabric-api": "*",
         "polymer-core": ">=0.16.0",
         "polymer-resource-pack":">=0.16.0",
